@@ -13,7 +13,8 @@ The world of cryptography runs insanely deep, so I'll be providing a short but l
 
 ## **Setup**
 This has a wide range of applications, but we'll go ahead and use a Linux distribution for our encryption process. Most of our work will be done on the command line interface.
-- It's recommended to have a partner for this project, but if you don't have one, you can easily complete it on your own by sending files and messages between two VMs. If you choose to do this, it's recommended to use a service such as Slack (you can just boot it up on the web browser) to transfer files painlessly. I used the **Ubuntu** and **Kali** distributions just fine to run this.
+- It's recommended to have a partner for this project, but if you don't have one, you can easily complete it on your own by sending files and messages between two VMs. 
+- If you choose to do this, it's recommended to use a service such as Slack (you can just boot it up on the web browser) to transfer files painlessly. I used the **Ubuntu** and **Kali** distributions just fine to run this.
 
 ## **Process** 
 1. First, **make a new directory, change into it, and create a file with your own unique message**. This can be done with `echo '[message]' >> encryptionfile.txt` (in my case, the file is named dirty_little_secret - if you want to simplify things for yourself, go ahead and follow the example in the picture).
@@ -52,7 +53,7 @@ Run `openssl enc -aes-256-cbc -nosalt -k password -P | tee secrets` and then cat
 
 5. Now it's time to use the symmetric key to **encrypt messages**. Run `openssl enc -nosalt -aes-256-cbc -in dirty_little_secret.txt -out dirty_little_secret.enc -base64 -K <key> -iv <IV>`.
 
-- In place of <key> and <IV>, copy and paste the key from your symmetrickey.dat and iv.dat files, respectively.
+- In place of `<key>` and `<IV>`, copy and paste the key from your symmetrickey.dat and iv.dat files, respectively.
   
 - You'll now have an encrypted version of your message in dirty_little_secret.enc - you can double check by using the `cat` command.
 
