@@ -77,8 +77,26 @@ Before you move them into your HyrbidCryptosystems directory, make sure to ename
 
 8. Time for the final, and most satisfying step - **decryption**. 
 
+First, you'll be using your partner's public key to decrypt their symmetric key. Then, you'll use that decrypted key to decrypt their secret message.
+
+To decrypt the symmetric key, use:
+
+`openssl pkeyutl -decrypt -in partners_symmetric_key.enc -inkey private.pem -out partners_symmetric_key.pem`
+
+To decrypt the secret message with symmetric key, run:
+
+`openssl enc -aes-256-cbc -d -nosalt -in partners_dirty_little_secret.enc -base64 -K <partner's symmetric key> -iv <partner's IV>`
+
+Note: Copy and paste your partner's symmetric key where the <partner's symmetric key> placeholder is, and your partner's IV where <partner's IV> appears.
+
+![image](https://user-images.githubusercontent.com/55573209/77864250-1b740e80-71ed-11ea-9892-e3802ba42de5.png)
+
 ....
 
 ## **Results**
+- You'll now, finally, be able to read you or your partner's once encrypted message. 
+- As you can see in the picture above, I was finally able to read the message that I wrote in Kali after decrypting it in Ubuntu (and provided I follow the steps correctly, I would be able to do the same fom Ubuntu --> Kali). 
 
 ## **Notes** 
+- Keep in mind that this kind of encryption happens millions (or more) times a day whenever you are browsing the internet. The point of this project is to understand the process and the concepts involved. 
+- In security, although there are always tools to make a process easier (Nmap can make your ping sweep script feel redundant, for example) it's incredibly important to have a strong foundational understanding of how a process works so that you can communicate potential errors and issues to others, even if your technical knowledge doesn't directly transfer over to your own work. 
